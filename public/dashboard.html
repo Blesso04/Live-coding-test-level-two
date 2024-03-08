@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap (2).css">
+</head>
+<body class="bg-dark">
+    <h1 class="text-center ">Welcome to the dashboard</h1>
+    <div class="container-fluid col-lg-7 col-10 mt-5 mx-auto">
+        <div class="alert alert-danger py-2 my-2" style="display: none;" id="err">Input field(s) can't be empty</div>
+        <input type="text" id="todo" placeholder="To-do" class="form-control form-control-sm">
+        <input type="text" id="tododes" placeholder="To-do description" class="form-control form-control-sm">
+        <button id="Upload" class="btn btn-light  col-lg-8 col-sm-12">Submit ToDo</button>
+        <button id="Sign" class="btn btn-light  col-lg-8 col-sm-12">Sign Out</button>
+    </div>
+    
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth,signOut  } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        const firebaseConfig = {
+          apiKey: "AIzaSyAaO9n8vHNbzRjdOPdhvzZrpUWsmDTNy5Y",
+          authDomain: "live-coding-test-2.firebaseapp.com",
+          projectId: "live-coding-test-2",
+          storageBucket: "live-coding-test-2.appspot.com",
+          messagingSenderId: "19019973694",
+          appId: "1:19019973694:web:a593f73e99b74691c37d6f"
+        };
+        // getDownloadURL , getStorage, ref as storeRef ,
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        // const storage = getStorage(app);
+
+        const sign = document.getElementById("sign")
+        sign.addEventListener("click",(event)=>{
+            signOut(auth).then(() => {
+  // Sign-out successful.
+//   window.location.href = "index.html"
+
+  setTimeout(()=>{
+    window.location.href = "index.html"
+    },5000)
+  
+}).catch((error) => {
+  // An error happened.
+});
+            
+        })
+        const Upload = document.getElementById("Upload")
+        Upload.addEventListener("click",()=>{
+            const todo = document.getElementById("todo")
+            const tododes = document.getElementById("tododes")
+            const err = document.getElementById("err")
+            if(todo.value == "" || tododes.value == ""){
+                err.style.display = "block"
+                setTimeout(()=>{
+        err.style.display = "none"
+    },5000)
+            }else{
+       
+        }
+
+        })
+      </script>
+</body>
+</html>
