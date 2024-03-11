@@ -20,7 +20,7 @@
         <button id="Sign" class="btn btn-light  ">Sign Out</button>
     </div>
 
-    <div id="display" class="mt-5 container-fluid col-lg-7 col-10 mx-auto shadow-lg py-3 bg-white">
+    <div id="display" class="mt-5 container-fluid col-lg-7 col-10 mx-auto shadow-lg py-3 text-white rounded-5">
 
     </div>
     
@@ -87,8 +87,10 @@
     if (saved){
       console.log("saved successfully");
       display.innerHTML = 
-      `<h1>To-do:${inputOne} </h1>
-      <h1>To-do description:${inputTwo}</h1>
+      `
+      <h1 class="text-center">To-dos</h1>
+      <h3>To-do:<p>${inputOne}</p> </h3>
+      <h3>To-do description:<p>${inputTwo}</p></h3>
        <p>${date}  ${time}</p> `
     }else{
       console.error("put in something");
