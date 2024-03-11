@@ -21,7 +21,7 @@
     </div>
 
     <div id="display" class="mt-5 container-fluid col-lg-7 col-10 mx-auto shadow-lg py-3 text-white rounded-5">
-
+      <h1 class="text-center text-underline">To-do lists</h1>
     </div>
     
 
@@ -88,9 +88,8 @@
       console.log("saved successfully");
       display.innerHTML = 
       `
-      <h1 class="text-center">To-dos</h1>
-      <h3>To-do:<p>${inputOne}</p> </h3>
-      <h3>To-do description:<p>${inputTwo}</p></h3>
+      <h3>To-do:${inputOne}</h3>
+      <h3>To-do description:${inputTwo}</h3>
        <p>${date}  ${time}</p> `
     }else{
       console.error("put in something");
