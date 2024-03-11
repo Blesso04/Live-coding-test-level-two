@@ -50,8 +50,8 @@
         const database = getDatabase(app);
         const storage = getStorage();
 
-        const sign = document.getElementById("sign")
-        sign.addEventListener("click",(event)=>{
+        const Sign = document.getElementById("Sign")
+        Sign.addEventListener("click",(event)=>{
             signOut(auth).then(() => {
   // Sign-out successful.
 //   window.location.href = "index.html"
