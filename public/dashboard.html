@@ -18,7 +18,9 @@
         <button class="btn btn-info my-3" id="submitFile" onclick="submitFile()"> Submit File</button>
         <button id="Upload" class="btn btn-light  col-lg-7 col-10 mt-2">Submit ToDo</button>
         <button id="Sign" class="btn btn-light  ">Sign Out</button>
-      <div id="display"></div>
+    </div>
+
+    <div id="display" class="mt-5 container-fluid col-lg-7 col-10 mx-auto shadow-lg py-3 bg-white">
 
     </div>
     
@@ -85,16 +87,14 @@
     if (saved){
       console.log("saved successfully");
       display.innerHTML = 
-      `<h1>${inputOne} </h1>
-      <h1>${inputTwo}</h1>
-      <h1> ${date}</h1>
-      <h1> ${time}</h1> `
+      `<h1>To-do:${inputOne} </h1>
+      <h1>To-do description:${inputTwo}</h1>
+       <p>${date}  ${time}</p> `
     }else{
       console.error("put in something");
     }
     // console.log(time,date,inputOne,inputTwo);
   }
-window.submitTodo = submitTodo
 
         })
 
