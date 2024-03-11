@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap (2).css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-dark">
+<body >
     <h1 class="text-center ">Welcome to the dashboard</h1>
-    <div class="container-fluid col-lg-7 col-10 mt-5 mx-auto">
+    <div class="container-fluid col-lg-7 col-10 mt-5 mx-auto shadow-lg py-4">
         <div class="alert alert-danger py-2 my-2" style="display: none;" id="err">Input field(s) can't be empty</div>
-        <input type="text" id="todo" placeholder="To-do" class="form-control form-control-sm">
-        <input type="text" id="tododes" placeholder="To-do description" class="form-control form-control-sm">
-        <button id="Upload" class="btn btn-light  col-lg-8 col-sm-12">Submit ToDo</button>
-        <button id="Sign" class="btn btn-light  col-lg-8 col-sm-12">Sign Out</button>
+        <input type="text" id="todo" placeholder="To-do" class="form-control ">
+        <input type="text" id="tododes" placeholder="To-do description" class="form-control mt-2">
+        <input type="file" class="form form-control" id="filey">
+        <input type="text" id="fileyDes" placeholder="File description" class="form-control mt-2">
+        <button class="btn btn-info my-3" id="submitFile" onclick="submitFile()"> Submit File</button>
+        <button id="Upload" class="btn btn-light  col-lg-7 col-10 mt-2">Submit ToDo</button>
+        <button id="Sign" class="btn btn-light  ">Sign Out</button>
     </div>
     
 
@@ -22,6 +26,9 @@
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getAuth,signOut  } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import {getDatabase ,ref,set,onValue } from  "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js"
+        import {getStorage,ref as stef } from  "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js"
+
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
       
@@ -37,7 +44,8 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
-        // const storage = getStorage(app);
+        const database = getDatabase(app);
+        const storage = getStorage();
 
         const sign = document.getElementById("sign")
         sign.addEventListener("click",(event)=>{
@@ -56,19 +64,49 @@
         })
         const Upload = document.getElementById("Upload")
         Upload.addEventListener("click",()=>{
-            const todo = document.getElementById("todo")
-            const tododes = document.getElementById("tododes")
-            const err = document.getElementById("err")
-            if(todo.value == "" || tododes.value == ""){
-                err.style.display = "block"
-                setTimeout(()=>{
-        err.style.display = "none"
-    },5000)
-            }else{
-       
-        }
+  let time = new Date().toLocaleTimeString()
+  let date = new Date().toLocaleDateString()
+  let inputOne = document.getElementById("todo").value
+  let inputTwo = document.getElementById("todoDes").value
+  let display = document.getElementById("display")
+
+  if(inputOne == '' || inputTwo == ''){
+    alert("Fill something inside of me naw")
+
+  }else{
+    let obj = {time,date,inputOne,inputTwo}
+    let dRef = ref(database,'todos/1')
+    // document.getElementById("todo").value = ""
+    // document.getElementById("todoDes").value = ""
+    let saved = set(dRef,obj)
+    if (saved){
+      console.log("saved successfully");
+      display.innerHTML = 
+      `<h1>${inputOne} </h1>
+      <h1>${inputTwo}</h1>
+      <h1> ${date}</h1>
+      <h1> ${time}</h1> `
+    }else{
+      console.error("put in something");
+    }
+    // console.log(time,date,inputOne,inputTwo);
+  }
+window.submitTodo = submitTodo
 
         })
+
+        const submitFile = () =>{
+  // alert("Na File")
+  let incomingFile = document.getElementById("filey").files[0]
+  console.log(incomingFile);
+  onAuthStateChanged(auth, (user) => {
+  let fieldUser = user.displayName
+  console.log(fieldUser);
+  let storageRef = stef
+});
+}
+window.submitFile = submitFile
+
       </script>
 </body>
 </html>
